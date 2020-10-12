@@ -1,7 +1,7 @@
 <h1 align="center">Easy Laravel Mix Extension</h1>
 
 <p align="center">
-    <a href="https://www.npmjs.com/package/easy-mix-extension"><img src="https://img.shields.io/npm/v/easy-mix-extension.svg" alt="NPM"></a>
+    <a href="https://www.npmjs.com/package/easy-mix-extension"><img src="https://img.shields.io/npm/v/easy-mix-extension.svg?color=success" alt="NPM"></a>
     <a href="https://npmcharts.com/compare/easy-mix-extension?minimal=true"><img src="https://img.shields.io/npm/dt/easy-mix-extension.svg" alt="NPM"></a>
     <a href="https://www.npmjs.com/package/easy-mix-extension"><img src="https://img.shields.io/npm/l/easy-mix-extension.svg.svg" alt="NPM"></a>
 </p>
