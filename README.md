@@ -3,7 +3,7 @@
 <p align="center">
     <a href="https://www.npmjs.com/package/easy-mix-extension"><img src="https://img.shields.io/npm/v/easy-mix-extension.svg?color=success" alt="NPM"></a>
     <a href="https://npmcharts.com/compare/easy-mix-extension?minimal=true"><img src="https://img.shields.io/npm/dt/easy-mix-extension.svg" alt="NPM"></a>
-    <a href="https://www.npmjs.com/package/easy-mix-extension"><img src="https://img.shields.io/npm/l/easy-mix-extension.svg.svg" alt="NPM"></a>
+    <a href="https://www.npmjs.com/package/easy-mix-extension"><img src="https://img.shields.io/npm/l/easy-mix-extension.svg" alt="NPM"></a>
 </p>
 
 
@@ -24,7 +24,6 @@ This extension will add some handy shortcuts for frequently used modification fo
 1. [**Documentation**](#documentation)
     - [**babel-dynamic-import**](#babel-dynamic-import)
     - [**babel-root-import**](#babel-root-import)
-    - [**vue-3-support**](#vue-3-support)
 1. [**Use**](#use)
 1. [**Issues & Contribution**](#issues--contribution)
 1. [**License**](#license)
@@ -85,16 +84,6 @@ Configuration for the [babel-plugin-root-import](https://www.npmjs.com/package/b
 ```js
 mix.easy('babel-root-import')
 mix.easy('babel-root-import', '@') // Default Value
-```
-
-### vue-3-support
-
-Fixes the [Laravel Mix](https://github.com/JeffreyWay/laravel-mix) bug for Vue 3 dev-tools.
-
-> Note: This will be removed as soon as Laravel Mix will include full Vue 3 support and fix this issue.
-
-```js
-mix.easy('vue-3-support', mix) // mix reference is required!
 ```
 
 
