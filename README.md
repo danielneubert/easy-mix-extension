@@ -66,7 +66,6 @@ The following configurations are currently available:
 |-|-|
 |babel-dynamic-import|Shorthand configuration for [@babel/plugin-syntax-dynamic-import](https://babeljs.io/docs/en/babel-plugin-syntax-dynamic-import)<br>*(Used for Vue 3 chunks)*|
 |babel-root-import|Shorthand configuration for [babel-plugin-root-import](https://www.npmjs.com/package/babel-plugin-root-import)|
-|vue-3-support|Fixes the [Laravel Mix](https://github.com/JeffreyWay/laravel-mix) bug for Vue 3 dev-tools|
 
 ### babel-dynamic-import
 
