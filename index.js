@@ -19,11 +19,30 @@ class EasyMixExtension {
     configs = configs
 
     /**
+     * Entry path relative to the project context.
+     *
+     * @property {String}
+     */
+    entry = null
+
+    /**
+     * Project context.
+     *
+     * @property {String}
+     */
+    context = null
+
+    /**
      * Returns all dependencies
      *
      * @returns {Array}
      */
     dependencies () {
+        if ('source' in this.list && typeof this.list['source'] == 'string') {
+            this.entry = this.list['source'].replace(/^\//g, '').replace(/\/$/g, '')
+            delete this.list['source']
+        }
+
         let dependencies = []
 
         Object.keys(this.list).forEach(key => {
@@ -84,6 +103,20 @@ class EasyMixExtension {
      * @param {Object} config 
      */
     webpackConfig(config) {
+        this.context = `${config.context}/`
+        this.output = Object.keys(config.entry)[0].replace(/^\//g, '')
+        this.output = this.output.split('/')
+        this.output.pop()
+        this.output = this.output.join('/')
+
+        if (this.entry == null) {
+            this.entry = Object.values(config.entry)[0][0]
+            this.entry = this.entry.replace(this.context, '')
+            this.entry = this.entry.split('/')
+            this.entry.pop()
+            this.entry = this.entry.join('/')
+        }
+
         this.executeList('webpackBefore', {})
         this.executeList('webpackConfig', config)
     }
@@ -95,18 +128,15 @@ class EasyMixExtension {
      * @param {Object} reference
      */
     executeList(name, reference) {
-        let merging = {}
-
         Object.keys(this.list).forEach(key => {
             if (name in this.configs[key]) {
-                merging = {
-                    ...merging,
-                    ...this.configs[key][name](this.list[key])
-                }
+                this.mergeObjects(reference, this.configs[key][name](this.list[key], {
+                    context: this.context,
+                    entry:   this.entry,
+                    output:  this.output,
+                }))
             }
         })
-
-        this.mergeObjects(reference, merging)
     }
 
     /**

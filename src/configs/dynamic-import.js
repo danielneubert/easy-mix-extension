@@ -1,13 +1,13 @@
 /**
- * babel-dynamic-import
+ * dynamic-import
  * 
  * Configuration for the @babel/plugin-syntax-dynamic-import
- * plugin. By default this will place all dynamic import
- * chunks into a separate folder.
+ * plugin. The given directory will be relative to your
+ * output directory.
  * 
- * @default 'public/js/chunks'
- * @example mix.easy('babel-dynamic-import')
- * @example mix.easy('babel-dynamic-import', 'public/js/chunks')
+ * @default 'chunks'
+ * @example mix.easy('dynamic-import')
+ * @example mix.easy('dynamic-import', 'chunks')
  * 
  * @author Daniel Neubert <git@danielneubert.com>
  * @since  0.1.0 (2020-10-12)
@@ -25,7 +25,7 @@ module.exports = {
         }
     },
 
-    webpackConfig (dir) {
+    webpackConfig (dir, project) {
         return {
             resolve: {
                 symlinks: false,
@@ -38,11 +38,11 @@ module.exports = {
                 chunkFilename: (chunk) => {
                     let name = chunk.chunk.id
                     let path = typeof dir == 'string'
-                                    ? dir.replace(/\/$/g, '')
-                                    : 'public/js/chunks'
+                                    ? `${project.output}/${dir.replace(/\/$/g, '').replace(/^\//g, '')}`
+                                    : `${project.output}/chunks`
 
                     if (typeof name == 'string') {
-                        name = name.replace('resources_js_', '')
+                        name = name.replace(`${project.entry.replace(/\//g, '_')}_`, '')
                     }
 
                     return `${path}/${name}.js`

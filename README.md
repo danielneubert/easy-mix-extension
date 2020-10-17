@@ -12,8 +12,6 @@
 
 This extension will add some handy shortcuts for frequently used modification for [Laravel Mix](https://github.com/JeffreyWay/laravel-mix).
 
-> This will also include support for the [Vue 3](https://github.com/vuejs/vue) dev-tools as long as it's missing from [Laravel Mix](https://github.com/JeffreyWay/laravel-mix).
-
 
 
 ## Table of Contents
@@ -22,8 +20,8 @@ This extension will add some handy shortcuts for frequently used modification fo
     - [**NPM Command**](#npm-command)
     - [**Require the Package**](#require-the-package)
 1. [**Documentation**](#documentation)
-    - [**babel-dynamic-import**](#babel-dynamic-import)
-    - [**babel-root-import**](#babel-root-import)
+    - [**alias**](#alias)
+    - [**dynamic-import**](#dynamic-import)
 1. [**Use**](#use)
 1. [**Issues & Contribution**](#issues--contribution)
 1. [**License**](#license)
@@ -64,25 +62,31 @@ The following configurations are currently available:
 
 |Configuration Name|Description|
 |-|-|
-|babel-dynamic-import|Shorthand configuration for [@babel/plugin-syntax-dynamic-import](https://babeljs.io/docs/en/babel-plugin-syntax-dynamic-import)<br>*(Used for Vue 3 chunks)*|
-|babel-root-import|Shorthand configuration for [babel-plugin-root-import](https://www.npmjs.com/package/babel-plugin-root-import)|
+|alias|Add import aliases like `import('@/App.vue')`)|
+|dynamic-import|Shorthand configuration for [@babel/plugin-syntax-dynamic-import](https://babeljs.io/docs/en/babel-plugin-syntax-dynamic-import)<br>*(Used for Vue 3 chunks)*|
 
-### babel-dynamic-import
 
-Configuration for the [@babel/plugin-syntax-dynamic-import](https://babeljs.io/docs/en/babel-plugin-syntax-dynamic-import) plugin. By default this will place all dynamic import chunks into a separate folder.
+### alias
+
+Easy configuration for import aliases starting from the entry file.
 
 ```js
-mix.easy('babel-dynamic-import')
-mix.easy('babel-dynamic-import', 'public/js/chunks') // Default Value
+mix.easy('alias')
+mix.easy('alias', { '@': '/' }) // default
+mix.easy('alias', {
+    '@': '/',
+    '@components': 'components',
+})
 ```
 
-### babel-root-import
 
-Configuration for the [babel-plugin-root-import](https://www.npmjs.com/package/babel-plugin-root-import) plugin. This will reference the root directory (of the javascript resources) with a given character.
+### dynamic-import
+
+Configuration for the [@babel/plugin-syntax-dynamic-import](https://babeljs.io/docs/en/babel-plugin-syntax-dynamic-import) plugin. The given directory will be relative to your output directory.
 
 ```js
-mix.easy('babel-root-import')
-mix.easy('babel-root-import', '@') // Default Value
+mix.easy('dynamic-import')
+mix.easy('dynamic-import', 'chunks') // default
 ```
 
 
@@ -97,18 +101,16 @@ Here are some examples:
 
 ```js
 // Separat Declaration
-mix.easy('name-sample-1')
-mix.easy('name-sample-2')
-mix.easy('name-with-value-1', 'value')
-mix.easy('name-with-value-2', 'value')
+mix.easy('sample-1')
+mix.easy('sample-2')
+mix.easy('sample-3', 'value')
 
 // Array Declaration
-mix.easy(['name-sample-1', 'name-sample-2'])
+mix.easy(['sample-1', 'sample-2'])
 
 // Object Declaration
 mix.easy({
-    'name-with-value-1': 'value',
-    'name-with-value-2': 'value',
+    'sample-3': 'value',
 })
 ```
 

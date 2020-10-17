@@ -1,4 +1,4 @@
 module.exports = {
-    'babel-root-import':    require('./babel-root-import'),
-    'babel-dynamic-import': require('./babel-dynamic-import'),
+    'alias':          require('./alias'),
+    'dynamic-import': require('./dynamic-import'),
 }
